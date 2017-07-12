@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Corpora</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Language</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @corpora.each do |corpus| %>
+      <tr>
+        <td><%= corpus.name %></td>
+        <td><%= corpus.description %></td>
+        <td><%= corpus.language %></td>
+        <td><%= link_to 'Show', corpus %></td>
+        <td><%= link_to 'Edit', edit_corpus_path(corpus) %></td>
+        <td><%= link_to 'Destroy', corpus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Corpus', new_corpus_path %>

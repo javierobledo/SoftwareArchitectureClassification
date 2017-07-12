@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @corpus.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @corpus.description %>
+</p>
+
+<p>
+  <strong>Language:</strong>
+  <%= @corpus.language %>
+</p>
+
+<%= link_to 'Edit', edit_corpus_path(@corpus) %> |
+<%= link_to 'Back', corpora_path %>
