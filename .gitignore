@@ -31,7 +31,7 @@
 #bin/
 #config.ru
 #config/
-db/
+#db/
 #lib/
 log/
 #package.json
