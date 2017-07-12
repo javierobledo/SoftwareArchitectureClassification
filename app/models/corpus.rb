@@ -1,3 +1,3 @@
 class Corpus < ApplicationRecord
-  has_many :preprocessings
+  has_many :preprocessings, dependent: :destroy
 end
