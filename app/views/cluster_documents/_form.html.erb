@@ -1,0 +1,27 @@
+<%= form_with(model: cluster_document, local: true) do |form| %>
+  <% if cluster_document.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cluster_document.errors.count, "error") %> prohibited this cluster_document from being saved:</h2>
+
+      <ul>
+      <% cluster_document.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :cluster_id %>
+    <%= form.text_field :cluster_id, id: :cluster_document_cluster_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :document_id %>
+    <%= form.text_field :document_id, id: :cluster_document_document_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

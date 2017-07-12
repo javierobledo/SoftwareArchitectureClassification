@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Valued Pre Parameters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Parameter</th>
+      <th>Preprocessing</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @valued_pre_parameters.each do |valued_pre_parameter| %>
+      <tr>
+        <td><%= valued_pre_parameter.value %></td>
+        <td><%= valued_pre_parameter.parameter %></td>
+        <td><%= valued_pre_parameter.preprocessing %></td>
+        <td><%= link_to 'Show', valued_pre_parameter %></td>
+        <td><%= link_to 'Edit', edit_valued_pre_parameter_path(valued_pre_parameter) %></td>
+        <td><%= link_to 'Destroy', valued_pre_parameter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Valued Pre Parameter', new_valued_pre_parameter_path %>

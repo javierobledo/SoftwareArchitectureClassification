@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  value: MyString
+  parameter: one
+  preprocessing: one
+
+two:
+  value: MyString
+  parameter: two
+  preprocessing: two

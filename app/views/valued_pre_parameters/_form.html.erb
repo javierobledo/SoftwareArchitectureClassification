@@ -1,0 +1,32 @@
+<%= form_with(model: valued_pre_parameter, local: true) do |form| %>
+  <% if valued_pre_parameter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(valued_pre_parameter.errors.count, "error") %> prohibited this valued_pre_parameter from being saved:</h2>
+
+      <ul>
+      <% valued_pre_parameter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :value %>
+    <%= form.text_field :value, id: :valued_pre_parameter_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parameter_id %>
+    <%= form.text_field :parameter_id, id: :valued_pre_parameter_parameter_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :preprocessing_id %>
+    <%= form.text_field :preprocessing_id, id: :valued_pre_parameter_preprocessing_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

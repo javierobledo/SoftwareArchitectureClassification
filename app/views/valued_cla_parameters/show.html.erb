@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @valued_cla_parameter.value %>
+</p>
+
+<p>
+  <strong>Parameter:</strong>
+  <%= @valued_cla_parameter.parameter %>
+</p>
+
+<p>
+  <strong>Classification:</strong>
+  <%= @valued_cla_parameter.classification %>
+</p>
+
+<%= link_to 'Edit', edit_valued_cla_parameter_path(@valued_cla_parameter) %> |
+<%= link_to 'Back', valued_cla_parameters_path %>

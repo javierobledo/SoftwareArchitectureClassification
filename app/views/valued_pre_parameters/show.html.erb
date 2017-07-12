@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @valued_pre_parameter.value %>
+</p>
+
+<p>
+  <strong>Parameter:</strong>
+  <%= @valued_pre_parameter.parameter %>
+</p>
+
+<p>
+  <strong>Preprocessing:</strong>
+  <%= @valued_pre_parameter.preprocessing %>
+</p>
+
+<%= link_to 'Edit', edit_valued_pre_parameter_path(@valued_pre_parameter) %> |
+<%= link_to 'Back', valued_pre_parameters_path %>

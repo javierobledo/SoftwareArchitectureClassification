@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyText
+  year: 1
+  category: MyString
+  content: MyText
+  preprocessing: one
+
+two:
+  title: MyText
+  year: 1
+  category: MyString
+  content: MyText
+  preprocessing: two

@@ -1,0 +1,32 @@
+<%= form_with(model: preprocessing, local: true) do |form| %>
+  <% if preprocessing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(preprocessing.errors.count, "error") %> prohibited this preprocessing from being saved:</h2>
+
+      <ul>
+      <% preprocessing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :corpus_id %>
+    <%= form.text_field :corpus_id, id: :preprocessing_corpus_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :algorithm_id %>
+    <%= form.text_field :algorithm_id, id: :preprocessing_algorithm_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parent_id %>
+    <%= form.number_field :parent_id, id: :preprocessing_parent_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

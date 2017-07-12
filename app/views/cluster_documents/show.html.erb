@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cluster:</strong>
+  <%= @cluster_document.cluster %>
+</p>
+
+<p>
+  <strong>Document:</strong>
+  <%= @cluster_document.document %>
+</p>
+
+<%= link_to 'Edit', edit_cluster_document_path(@cluster_document) %> |
+<%= link_to 'Back', cluster_documents_path %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @classification.name %>
+</p>
+
+<p>
+  <strong>Algorithm:</strong>
+  <%= @classification.algorithm %>
+</p>
+
+<p>
+  <strong>Preprocessing:</strong>
+  <%= @classification.preprocessing %>
+</p>
+
+<%= link_to 'Edit', edit_classification_path(@classification) %> |
+<%= link_to 'Back', classifications_path %>

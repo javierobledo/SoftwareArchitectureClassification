@@ -1,0 +1,11 @@
+rails generate scaffold Corpus name:string description:text language:string
+rails generate scaffold Algorithm name:string description:text DOI:string
+rails generate scaffold Preprocessing corpus:references algorithm:references parent_id:integer
+rails generate scaffold Document title:text year:integer category:string content:text preprocessing:references
+rails generate scaffold Classification name algorithm:references preprocessing:references
+rails generate scaffold Cluster name:string classification:references parent_id:integer
+rails generate scaffold ClusterDocument cluster:references document:references
+rails generate scaffold Word content:string cluster:references
+rails generate scaffold Parameter name:string typeof:string algorithm:references
+rails generate scaffold ValuedClaParameter value:string parameter:references classification:references
+rails generate scaffold ValuedPreParameter value:string parameter:references preprocessing:references

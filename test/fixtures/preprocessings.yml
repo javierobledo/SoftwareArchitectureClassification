@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  corpus: one
+  algorithm: one
+  parent_id: 1
+
+two:
+  corpus: two
+  algorithm: two
+  parent_id: 1

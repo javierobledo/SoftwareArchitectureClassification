@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @document.title %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @document.year %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @document.category %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @document.content %>
+</p>
+
+<p>
+  <strong>Preprocessing:</strong>
+  <%= @document.preprocessing %>
+</p>
+
+<%= link_to 'Edit', edit_document_path(@document) %> |
+<%= link_to 'Back', documents_path %>
