@@ -1,19 +1,47 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>ID:</strong>
+  <%= @preprocessing.id %>
+</p>
+
+<p>
   <strong>Corpus:</strong>
-  <%= @preprocessing.corpus %>
+  <%= @preprocessing.corpus.name %>
 </p>
 
 <p>
   <strong>Algorithm:</strong>
-  <%= @preprocessing.algorithm %>
+  <%= @preprocessing.algorithm.name %>
 </p>
 
 <p>
   <strong>Parent:</strong>
   <%= @preprocessing.parent_id %>
 </p>
+
+<h2>Documents</h2>
+<% @preprocessing.documents.each do |document| %>
+    <p>
+      <strong>Title:</strong>
+      <%= document.title %>
+    </p>
+
+    <p>
+      <strong>Year:</strong>
+      <%= document.year %>
+    </p>
+
+    <p>
+      <strong>Category:</strong>
+      <%= document.category %>
+    </p>
+
+    <p>
+      <strong>Content:</strong>
+      <%= document.content %>
+    </p>
+<% end %>
 
 <%= link_to 'Edit', edit_preprocessing_path(@preprocessing) %> |
 <%= link_to 'Back', preprocessings_path %>

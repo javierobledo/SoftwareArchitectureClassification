@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170712210449) do
+ActiveRecord::Schema.define(version: 20170720213606) do
 
   create_table "algorithms", force: :cascade do |t|
     t.string "name"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170712210449) do
     t.string "language"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "corpus_file"
   end
 
   create_table "documents", force: :cascade do |t|

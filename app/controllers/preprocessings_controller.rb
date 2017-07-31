@@ -7,6 +7,25 @@ class PreprocessingsController < ApplicationController
     @preprocessings = Preprocessing.all
   end
 
+  def documents_index_csv id
+    file = "#{Rails.root}/public/document_data"
+    @documents = Preprocessing.find(id).documents
+    attributes = ["title", "year", "category", "content"]
+    CSV.open(file, 'w', write_headers: true, headers: attributes) do |writer|
+      @documents.each do |document|
+        writer << [document.title, document.year, document.category, document.content]
+      end
+    end
+    file
+  end
+
+  def from_csv_to_documents filepath, pid
+    CSV.foreach(filepath, :headers => true) do |row|
+      row[:preprocessing_id] = pid
+      Document.create!(row.to_hash)
+    end
+  end
+
   # GET /preprocessings/1
   # GET /preprocessings/1.json
   def show
@@ -28,6 +47,32 @@ class PreprocessingsController < ApplicationController
 
     respond_to do |format|
       if @preprocessing.save
+        # Use algorithm selected in corpus
+        @alg = Algorithm.find(@preprocessing.algorithm_id)
+        # Export documents from parent preprocessing to csv to public folder
+        csvfile = documents_index_csv @preprocessing.parent_id
+        # Call python process
+        outcsvfile = `python3 lib/assets/main.py "#{csvfile}" #{@alg.name}`
+        outcsvfile = outcsvfile.chomp
+        # Load CSV files in DB as new documents associated to the current preprocessing
+        from_csv_to_documents outcsvfile, @preprocessing.id
+        # Get the selected preprocessing from the preprocessing
+        #@parent = Preprocessing.find(@preprocessing.parent_id)
+        # Get documents from him
+        #@documents = @parent.documents
+        #p @documents.size
+        #i = 0
+        #@documents.each do |document|
+          #new_title = `python3 lib/assets/main.py "#{document.title}" #{@alg.name}`
+          #new_content = `python3 lib/assets/main.py "#{document.content}" #{@alg.name}`
+          #Document.create!(:title => new_title, :content => new_content, :preprocessing_id => @preprocessing.id)
+          #p new_title
+          #p new_content
+          #p i
+          #i = i + 1
+        #end
+
+
         format.html { redirect_to @preprocessing, notice: 'Preprocessing was successfully created.' }
         format.json { render :show, status: :created, location: @preprocessing }
       else

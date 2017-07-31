@@ -7,8 +7,13 @@ Rails.application.routes.draw do
   resources :clusters
   resources :classifications
   resources :documents
-  resources :preprocessings
+  resources :preprocessings do
+    resources :documents
+    get 'documents_csv', to: 'documents#index_csv', defaults: { format: :csv }
+  end
   resources :algorithms
-  resources :corpora
+  resources :corpora do
+    resources :preprocessings
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

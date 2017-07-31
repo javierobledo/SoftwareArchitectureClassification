@@ -35,7 +35,8 @@
 #lib/
 log/
 #package.json
-#public/
+public/uploads/*
 #test/
 tmp/
 #vendor/
+lib/assets/__pycache__

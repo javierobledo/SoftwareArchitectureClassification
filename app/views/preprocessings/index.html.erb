@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Corpus</th>
       <th>Algorithm</th>
       <th>Parent</th>
@@ -15,8 +16,9 @@
   <tbody>
     <% @preprocessings.each do |preprocessing| %>
       <tr>
-        <td><%= preprocessing.corpus %></td>
-        <td><%= preprocessing.algorithm %></td>
+        <td><%= preprocessing.id %></td>
+        <td><%= preprocessing.corpus.name %></td>
+        <td><%= preprocessing.algorithm.name %></td>
         <td><%= preprocessing.parent_id %></td>
         <td><%= link_to 'Show', preprocessing %></td>
         <td><%= link_to 'Edit', edit_preprocessing_path(preprocessing) %></td>

@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Algorithm.create({
+                     name: 'stopword',
+                     description: 'Remove stopwords from the stopwords corpus in NLTK 3 python package',
+                     DOI: ''})
+Algorithm.create({
+                     name: 'WordNetLemmatizer',
+                     description: 'Implementation of the wordnet lemmatizer in NLTK 3 python package',
+                     DOI: ''})
+Algorithm.create({
+                     name: 'Original',
+                     description: 'Original text from corpus',
+                     DOI: ''})
