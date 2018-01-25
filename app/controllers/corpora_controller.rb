@@ -36,7 +36,7 @@ class CorporaController < ApplicationController
           file.write(uploaded_io.read)
         end
         filepath = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
-        @alg = Algorithm.find_by_name('Original')
+        @alg = Algorithm.find_by_name('original')
         @preprocessing = Preprocessing.new(:corpus_id => @corpus.id, :algorithm_id => @alg.id)
         if @preprocessing.save
           Zip::File.open(filepath) do |zip_file|

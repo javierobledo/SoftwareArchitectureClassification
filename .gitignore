@@ -40,3 +40,9 @@ public/uploads/*
 tmp/
 #vendor/
 lib/assets/__pycache__
+.DS_Store
+lib/.DS_Store
+lib/assets/.DS_Store
+public/document_data
+public/document_datanew
+public/uploads/
