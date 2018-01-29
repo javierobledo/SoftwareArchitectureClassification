@@ -46,3 +46,6 @@ lib/assets/.DS_Store
 public/document_data
 public/document_datanew
 public/uploads/
+public/clustertree.json
+public/clusterwords.json
+public/clusterstree.csv
