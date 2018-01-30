@@ -10,6 +10,8 @@ class ClassificationsController < ApplicationController
   # GET /classifications/1
   # GET /classifications/1.json
   def show
+    @root = @classification.get_clusters_root
+    render json: @root.to_node3
   end
 
   # GET /classifications/new
