@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130215921) do
+ActiveRecord::Schema.define(version: 20180201160530) do
 
   create_table "algorithms", force: :cascade do |t|
     t.string "name"
@@ -110,6 +110,15 @@ ActiveRecord::Schema.define(version: 20180130215921) do
     t.datetime "updated_at", null: false
     t.index ["parameter_id"], name: "index_valued_pre_parameters_on_parameter_id"
     t.index ["preprocessing_id"], name: "index_valued_pre_parameters_on_preprocessing_id"
+  end
+
+  create_table "word_frequencies", force: :cascade do |t|
+    t.string "content"
+    t.integer "frequency"
+    t.integer "cluster_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cluster_id"], name: "index_word_frequencies_on_cluster_id"
   end
 
   create_table "words", force: :cascade do |t|

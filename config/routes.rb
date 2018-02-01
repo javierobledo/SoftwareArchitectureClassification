@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
+  resources :word_frequencies
   resources :graphs
   resources :valued_pre_parameters
   resources :valued_cla_parameters
   resources :parameters
   resources :words
   resources :cluster_documents
-  resources :clusters
+  resources :clusters do
+    resources :word_frequencies
+  end
+  get 'classifications/:id/graph', to: 'classifications#graph'
   resources :classifications do
     resources :clusters
   end

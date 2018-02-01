@@ -1,0 +1,32 @@
+<%= form_with(model: word_frequency, local: true) do |form| %>
+  <% if word_frequency.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(word_frequency.errors.count, "error") %> prohibited this word_frequency from being saved:</h2>
+
+      <ul>
+      <% word_frequency.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content, id: :word_frequency_content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :frequency %>
+    <%= form.number_field :frequency, id: :word_frequency_frequency %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cluster_id %>
+    <%= form.text_field :cluster_id, id: :word_frequency_cluster_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

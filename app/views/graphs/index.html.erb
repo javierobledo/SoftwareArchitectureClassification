@@ -47,7 +47,7 @@
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    d3.json("/classifications/1", function(error, flare) {
+    d3.json("<%= request.base_url %>/classifications/<%= params[:id] %>.json", function(error, flare) {
         if (error) throw error;
 
         root = flare;

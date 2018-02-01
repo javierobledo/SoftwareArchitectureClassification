@@ -14,6 +14,10 @@ class ClassificationsController < ApplicationController
     render json: @root.to_node3
   end
 
+  def graph
+    render 'graphs/index'
+  end
+
   # GET /classifications/new
   def new
     @classification = Classification.new
