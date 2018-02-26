@@ -111,29 +111,57 @@
             .attr("class", "node")
             .attr("id",function(d) { return d.id; })
             .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
-            .on("click", function(d) { showMoviePanel(d); } )
+            .on("click", function(d) {
+                var currentCircle = d3.select(this).select("circle");
+                if(currentCircle.attr("active")=="true"){
+                    currentCircle.attr("active","false")
+                }else{
+                    currentCircle.attr("active","true")
+                    selectOnlyThisNode(d)
+                }
+                updateState()
+                showMoviePanel(d); } )
 
         node.append("svg:circle")
-            .attr("r", 3)
+            .attr("r", 3).attr("active", false)
 
         node.append("svg:text")
             .attr("dx", function(d) { return d.x < 180 ? 8 : -8; })
             .attr("dy", ".31em")
             .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
             .attr("transform", function(d) { return d.x < 180 ? null : "rotate(180)"; })
-            .text(function(d) { return d.name; });
-
+            //.text(function(d) { return d.name; });
+            .text(function(d) { return d.words });
         movieInfoDiv = d3.select("#movieInfo");
 
         function showMoviePanel( node ) {
             // Fill it and display the panel
             movieInfoDiv
-                .html( getMovieInfo(node,nodeArray) )
+                .html( getMovieInfo(node ) )
                 .attr("class","panel_on");
         }
 
-        function getMovieInfo( n, nodeArray ) {
+        function getMovieInfo( n ) {
                 return '<object type="text/html" data="<%= request.base_url %>/classifications/<%= params[:id] %>/clusters/'+n.id+'" width="100%" height="100%"></object>';
+        }
+
+        function updateState() {
+            d3.selectAll('g.node')
+                .each(function(d) {
+                    var currentCircle = d3.select(this).select("circle");
+                    if(currentCircle.attr("active") == "true"){
+                        currentCircle.transition().duration(750).attr("r", 5).style("stroke","red").style("fill","steelblue")
+                    } else {currentCircle.transition().duration(750).attr("r", 3).style("stroke","steelblue").style("fill","white")}
+                });
+        }
+
+        function selectOnlyThisNode(n) {
+            d3.selectAll('g.node')
+                .each(function(d) {
+                    if(n.id != d.id){
+                        d3.select(this).select("circle").attr("active","false")
+                    }
+                });
         }
 
     });

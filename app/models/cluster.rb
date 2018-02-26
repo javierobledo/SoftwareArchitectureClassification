@@ -18,6 +18,23 @@ class Cluster < ApplicationRecord
     Cluster.find(parent_id) if parent_id
   end
   def to_node3
-    self.attributes.merge({:children => self.children.map { |c| c.to_node3 }})
+    self.attributes.merge({:words => self.most_frequent_word,:children => self.children.map { |c| c.to_node3 }})
+  end
+
+  def most_frequent_word
+    @ordered_frequencies = self.word_frequencies.order(:frequency).reverse
+    max = @ordered_frequencies[0]["frequency"]
+    words = Array.new
+    i = 1
+    @ordered_frequencies.each do |ordered_frequency|
+      if max == ordered_frequency["frequency"]
+        words.push(ordered_frequency["content"])
+        i += 1
+      end
+      if max < ordered_frequency["frequency"] or i >= 3
+        break
+      end
+    end
+    words.join("-")
   end
 end
