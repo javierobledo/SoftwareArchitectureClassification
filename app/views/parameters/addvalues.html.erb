@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+<% @algorithm = Algorithm.find(params[:algorithm_id]) %>
+
+<h1>Parameters</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+    <th colspan="2"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @algorithm.parameters.each do |parameter| %>
+    <tr>
+      <td><%= parameter.name %></td>
+      <td><%= parameter.default %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Parameter', new_parameter_path %>

@@ -11,7 +11,11 @@ class ClassificationsController < ApplicationController
   # GET /classifications/1.json
   def show
     @root = @classification.get_clusters_root
-    render json: @root.to_node3
+    if @root != nil
+      render json: @root.to_node3
+    else
+      render :show
+    end
   end
 
   def graph

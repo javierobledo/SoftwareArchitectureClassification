@@ -21,6 +21,10 @@ class ParametersController < ApplicationController
   def edit
   end
 
+  def addvalues
+    # TODO
+  end
+
   # POST /parameters
   # POST /parameters.json
   def create

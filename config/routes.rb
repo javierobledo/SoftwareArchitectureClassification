@@ -12,6 +12,14 @@ Rails.application.routes.draw do
   get 'classifications/:id/graph', to: 'classifications#graph'
   resources :classifications do
     resources :clusters
+    resources :algorithms do
+      resources :parameters do
+        collection do
+          get 'addvalues'
+        end
+        resources :valued_cla_parameters
+      end
+    end
   end
   resources :documents
   resources :preprocessings do
@@ -19,7 +27,10 @@ Rails.application.routes.draw do
     get 'documents_csv', to: 'documents#index_csv', defaults: { format: :csv }
   end
   resources :algorithms do
-    resources :parameters
+    resources :parameters do
+      resources :valued_cla_parameters
+      resources :valued_pre_parameters
+    end
   end
   resources :corpora do
     resources :preprocessings

@@ -18,12 +18,14 @@
 
   <div class="field">
     <%= form.label :algorithm_id %>
-    <%= form.text_field :algorithm_id, id: :classification_algorithm_id %>
+    <%= form.collection_select(:algorithm_id, Algorithm.all, :id, :name) %>
+    <!--%= form.text_field :algorithm_id, id: :classification_algorithm_id %-->
   </div>
 
   <div class="field">
     <%= form.label :preprocessing_id %>
-    <%= form.text_field :preprocessing_id, id: :classification_preprocessing_id %>
+    <%= form.collection_select(:preprocessing_id, Preprocessing.all, :id, :id) %>
+    <!--%= form.text_field :preprocessing_id, id: :classification_preprocessing_id %-->
   </div>
 
   <div class="actions">
