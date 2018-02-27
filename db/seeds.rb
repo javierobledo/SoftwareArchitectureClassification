@@ -40,5 +40,26 @@ Algorithm.create({
                      DOI: 'https://doi.org/10.1108/eb046814'})
 Algorithm.create({
                      name: 'HLDA',
-                     description: 'Remove stopwords from the stopwords corpus in NLTK 3 python package',
-                     DOI: ''})
+                     description: 'The nested chinese restaurant process and bayesian nonparametric inference of topic hierarchies',
+                     DOI: 'https://doi.org/10.1145/1667053.1667056'})
+@hlda = Algorithm.find_by_name('HLDA')
+Parameter.create({
+    algorithm: @hlda,
+    name: 'num-levels',
+    typeof: 'integer',
+    default: '3'             })
+Parameter.create({
+                     algorithm: @hlda,
+                     name: 'alpha',
+                     typeof: 'float',
+                     default: '10.0'             })
+Parameter.create({
+                     algorithm: @hlda,
+                     name: 'gamma',
+                     typeof: 'float',
+                     default: '1.0'             })
+Parameter.create({
+                     algorithm: @hlda,
+                     name: 'eta',
+                     typeof: 'float',
+                     default: '0.1'             })

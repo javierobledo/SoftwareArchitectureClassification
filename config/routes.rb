@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     resources :documents
     get 'documents_csv', to: 'documents#index_csv', defaults: { format: :csv }
   end
-  resources :algorithms
+  resources :algorithms do
+    resources :parameters
+  end
   resources :corpora do
     resources :preprocessings
   end
