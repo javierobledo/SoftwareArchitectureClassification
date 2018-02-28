@@ -23,6 +23,9 @@ class ParametersController < ApplicationController
 
   def addvalues
     # TODO
+    @parameters = Algorithm.find(params[:algorithm_id]).parameters
+    @classification = Classification.find(params[:classification_id])
+    params.merge!({:parameters => @parameters, :classification => @classification})
   end
 
   # POST /parameters
@@ -73,6 +76,6 @@ class ParametersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def parameter_params
-      params.require(:parameter).permit(:name, :typeof, :algorithm_id)
+      params.require(:parameter).permit(:name, :typeof, :algorithm_id, valued_cla_parameters_attributes: [:id, :value, :_destroy])
     end
 end

@@ -31,13 +31,19 @@ class ClassificationsController < ApplicationController
   def edit
   end
 
+  def do_classification
+    render json:{'p'=>params.keys}
+  end
+
   # POST /classifications
   # POST /classifications.json
   def create
     @classification = Classification.new(classification_params)
-
     respond_to do |format|
       if @classification.save
+        @classification.algorithm.parameters.each do |parameter|
+          ValuedClaParameter.create!({:value=>parameter.default,:classification_id=>@classification.id,:parameter_id=>parameter.id})
+        end
         format.html { redirect_to @classification, notice: 'Classification was successfully created.' }
         format.json { render :show, status: :created, location: @classification }
       else
@@ -50,8 +56,13 @@ class ClassificationsController < ApplicationController
   # PATCH/PUT /classifications/1
   # PATCH/PUT /classifications/1.json
   def update
+    #render json:{'clas' => params[:action],'classification'=> params[:classification],'commit'=>params[:commit],'id'=>params[:id],'_method'=>params[:_method],'action'=>params[:action],'keys' => params.keys}
     respond_to do |format|
       if @classification.update(classification_params)
+        @values = params[:classification][:valued_cla_parameters_attributes]
+        @values.each do |n,data|
+          ValuedClaParameter.update data[:id],{:value=>data[:value]}
+        end
         format.html { redirect_to @classification, notice: 'Classification was successfully updated.' }
         format.json { render :show, status: :ok, location: @classification }
       else
@@ -79,6 +90,6 @@ class ClassificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def classification_params
-      params.require(:classification).permit(:name, :algorithm_id, :preprocessing_id)
+      params.require(:classification).permit(:name, :algorithm_id, :preprocessing_id, valued_cla_parameters_attributes: [ :parameter_id ])
     end
 end

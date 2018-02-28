@@ -1,27 +1,16 @@
+<h1>Add Parameters to Classification</h1>
 <p id="notice"><%= notice %></p>
-<% @algorithm = Algorithm.find(params[:algorithm_id]) %>
+<p>
+  <strong>Name:</strong>
+  <%= @classification.name %>
+</p>
 
+<p>
+  <strong>Algorithm:</strong>
+  <%= @classification.algorithm.name %>
+</p>
 <h1>Parameters</h1>
+<% @parameters = @classification.algorithm.parameters %>
+<%= render 'valued_cla_parameters/multiform', valued_cla_parameter: {:newvalued=>ValuedClaParameter.new,:parameters=>@parameters,:classification_id=>@classification.id}  %>
 
-<table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Value</th>
-    <th colspan="2"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @algorithm.parameters.each do |parameter| %>
-    <tr>
-      <td><%= parameter.name %></td>
-      <td><%= parameter.default %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Parameter', new_parameter_path %>
+<% #render 'valued_cla_parameters/form', valued_cla_parameter: @valued_cla_parameter  %>

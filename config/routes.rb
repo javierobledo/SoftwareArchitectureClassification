@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :word_frequencies
   end
   get 'classifications/:id/graph', to: 'classifications#graph'
+  get 'classifications/:id/do_classification', to: 'classifications#do_classification'
   resources :classifications do
     resources :clusters
     resources :algorithms do
