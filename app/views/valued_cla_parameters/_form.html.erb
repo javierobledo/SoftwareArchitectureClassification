@@ -1,3 +1,5 @@
+
+<% if valued_cla_parameter.is_a?(ValuedClaParameter)%>
 <%= form_with(model: valued_cla_parameter, local: true) do |form| %>
   <% if valued_cla_parameter.errors.any? %>
     <div id="error_explanation">
@@ -29,4 +31,38 @@
   <div class="actions">
     <%= form.submit %>
   </div>
+  <% end %>
+<% else %>
+  <%= form_with(model: valued_cla_parameter[:newvalued], local: true) do |form| %>
+    <% if valued_cla_parameter[:newvalued].errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(valued_cla_parameter[:newvalued].errors.count, "error") %> prohibited this valued_cla_parameter from being saved:</h2>
+
+        <ul>
+          <% valued_cla_parameter[:newvalued].errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :value %>
+      <%= form.text_field :value, id: :valued_cla_parameter_value, value:valued_cla_parameter[:default] %>
+    </div>
+
+    <div class="field">
+      <%= form.label :parameter_id %>
+      <%= form.text_field :parameter_id, id: :valued_cla_parameter_parameter_id, value:valued_cla_parameter[:parameter_id] %>
+    </div>
+
+    <div class="field">
+      <%= form.label :classification_id %>
+      <%= form.text_field :classification_id, id: :valued_cla_parameter_classification_id, value:valued_cla_parameter[:classification_id] %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+<% end %>
 <% end %>

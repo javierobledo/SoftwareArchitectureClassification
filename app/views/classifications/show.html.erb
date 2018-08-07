@@ -7,13 +7,16 @@
 
 <p>
   <strong>Algorithm:</strong>
-  <%= @classification.algorithm %>
+  <%= @classification.algorithm.name %>
 </p>
 
 <p>
   <strong>Preprocessing:</strong>
-  <%= @classification.preprocessing %>
+  <%= @classification.preprocessing.id %>
 </p>
-
+<h1>Parameters</h1>
+<% @parameters = @classification.algorithm.parameters %>
+<%= render 'valued_cla_parameters/multiform', valued_cla_parameter: {:parameters=>@parameters,:classification_id=>@classification.id}  %>
+<%= link_to 'Execute Classification', classification_path.to_s + '/do_classification' %> |
 <%= link_to 'Edit', edit_classification_path(@classification) %> |
 <%= link_to 'Back', classifications_path %>

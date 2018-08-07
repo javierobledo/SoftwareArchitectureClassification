@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @word_frequency.content %>
+</p>
+
+<p>
+  <strong>Frequency:</strong>
+  <%= @word_frequency.frequency %>
+</p>
+
+<p>
+  <strong>Cluster:</strong>
+  <%= @word_frequency.cluster %>
+</p>
+
+<%= link_to 'Edit', edit_word_frequency_path(@word_frequency) %> |
+<%= link_to 'Back', word_frequencies_path %>

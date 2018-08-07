@@ -11,8 +11,13 @@
 </p>
 
 <p>
+  <strong>Default:</strong>
+  <%= @parameter.default %>
+</p>
+
+<p>
   <strong>Algorithm:</strong>
-  <%= @parameter.algorithm %>
+  <%= link_to @parameter.algorithm.name, @parameter.algorithm %>
 </p>
 
 <%= link_to 'Edit', edit_parameter_path(@parameter) %> |

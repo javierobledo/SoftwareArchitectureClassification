@@ -1,0 +1,27 @@
+<%= form_for(@classification) do |f| %>
+  <% if @classification.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@classification.errors.count, "error") %> prohibited
+        this user from being saved:
+      </h2>
+
+      <ul>
+        <% @classification.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.fields_for :valued_cla_parameters do |ff| %>
+    <% @parameter = Parameter.find(ff.object.parameter_id)  %>
+    <div>
+      <%= ff.label :value , @parameter.name.to_s + '(' + @parameter.typeof.to_s + ')'%>
+      <%= ff.text_field :value %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

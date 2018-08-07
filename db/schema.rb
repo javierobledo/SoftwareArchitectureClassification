@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170712210449) do
+ActiveRecord::Schema.define(version: 20180227153651) do
 
   create_table "algorithms", force: :cascade do |t|
     t.string "name"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170712210449) do
     t.string "language"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "corpus_file"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -67,12 +68,18 @@ ActiveRecord::Schema.define(version: 20170712210449) do
     t.index ["preprocessing_id"], name: "index_documents_on_preprocessing_id"
   end
 
+  create_table "graphs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "parameters", force: :cascade do |t|
     t.string "name"
     t.string "typeof"
     t.integer "algorithm_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "default"
     t.index ["algorithm_id"], name: "index_parameters_on_algorithm_id"
   end
 
@@ -104,6 +111,15 @@ ActiveRecord::Schema.define(version: 20170712210449) do
     t.datetime "updated_at", null: false
     t.index ["parameter_id"], name: "index_valued_pre_parameters_on_parameter_id"
     t.index ["preprocessing_id"], name: "index_valued_pre_parameters_on_preprocessing_id"
+  end
+
+  create_table "word_frequencies", force: :cascade do |t|
+    t.string "content"
+    t.integer "frequency"
+    t.integer "cluster_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cluster_id"], name: "index_word_frequencies_on_cluster_id"
   end
 
   create_table "words", force: :cascade do |t|

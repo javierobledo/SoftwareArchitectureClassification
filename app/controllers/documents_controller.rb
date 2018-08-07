@@ -7,6 +7,18 @@ class DocumentsController < ApplicationController
     @documents = Document.all
   end
 
+  def index_csv id
+    @documents = Preprocessing.find(id).documents
+    respond_to do |format|
+      format.csv { send_data @documents.to_csv, filename: "documents-#{Date.today}" }
+    end
+  end
+
+  def import
+    Document.import(params[:file], params[:preprocessing_id])
+    redirect_to root_url, notice: "Documents imported"
+  end
+
   # GET /documents/1
   # GET /documents/1.json
   def show

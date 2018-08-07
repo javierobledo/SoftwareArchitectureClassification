@@ -1,0 +1,16 @@
+<h1>Add Parameters to Classification</h1>
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Name:</strong>
+  <%= @classification.name %>
+</p>
+
+<p>
+  <strong>Algorithm:</strong>
+  <%= @classification.algorithm.name %>
+</p>
+<h1>Parameters</h1>
+<% @parameters = @classification.algorithm.parameters %>
+<%= render 'valued_cla_parameters/multiform', valued_cla_parameter: {:newvalued=>ValuedClaParameter.new,:parameters=>@parameters,:classification_id=>@classification.id}  %>
+
+<% #render 'valued_cla_parameters/form', valued_cla_parameter: @valued_cla_parameter  %>

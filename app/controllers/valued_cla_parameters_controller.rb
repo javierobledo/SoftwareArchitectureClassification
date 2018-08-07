@@ -14,7 +14,12 @@ class ValuedClaParametersController < ApplicationController
 
   # GET /valued_cla_parameters/new
   def new
-    @valued_cla_parameter = ValuedClaParameter.new
+    if params.has_key? :parameter_id
+      @parameter = Parameter.find(params[:parameter_id])
+      @valued_cla_parameter = {:newvalued=>ValuedClaParameter.new,:parameter_id=>@parameter.id,:classification_id=>params[:classification_id],:default=>@parameter.default}
+    else
+      @valued_cla_parameter = ValuedClaParameter.new
+    end
   end
 
   # GET /valued_cla_parameters/1/edit
